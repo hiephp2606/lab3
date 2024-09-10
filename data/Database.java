@@ -7,5 +7,7 @@ import java.util.List;
 
 public class Database {
     public static List<Worker> workers = new ArrayList<>();
+    public static List<Worker> salaryInformation = new ArrayList<>();
+
 
 }

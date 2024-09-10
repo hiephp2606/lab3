@@ -6,6 +6,7 @@ public class Worker {
     private int age;
     private int salary;
     private String workPlace;
+    private String Status;
 
     public Worker(int id, String name, int age, int salary, String workPlace) {
         this.id = id;
@@ -13,6 +14,21 @@ public class Worker {
         this.age = age;
         this.salary = salary;
         this.workPlace = workPlace;
+    }
+
+    public Worker(int id, String name, int salary, String status) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.Status = status;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public int getId() {
@@ -55,15 +71,4 @@ public class Worker {
         this.workPlace = workPlace;
     }
 
-    @Override
-    public String toString() {
-        return "W " +
-                 id +
-                "       " + name +
-                "       " + age +
-                "       " + salary +
-                "       " + workPlace +
-                "\n"
-                ;
-    }
 }

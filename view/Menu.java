@@ -5,6 +5,8 @@ import entities.Worker;
 import service.WorkerService;
 
 import java.sql.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,29 +57,18 @@ public class Menu {
 
 //    informationMenu
     public void informationMenuDisplay () {
-        List<Integer> id = new ArrayList<>();
-        List<Integer> salary = new ArrayList<>();
-        List<String> name = new ArrayList<>();
-        List[] menu = new List[5];
-        for (Worker worker:Database.workers) {
-            id.add(worker.getId());
-            salary.add(worker.getSalary());
-            name.add(worker.getName());
+        System.out.println("---------------------Display Information Salary---------------------");
+        System.out.println("Code        Name        Salary        Status        Date");
+        for (Worker worker:Database.salaryInformation) {
+            System.out.printf("W " + worker.getId());
+            System.out.printf("        " + worker.getName());
+            System.out.printf("        " + worker.getSalary());
+            System.out.printf("        " + worker.getStatus());
+            LocalDateTime updateTime = LocalDateTime.now();
+            DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = updateTime.format(Format);
+            System.out.println("        "+formattedDate);
         }
-        for (int i = 0; i < 3; i++) {
-            while (i == 0) {
-                menu[0] = id;
-                break;
-            }
-            while (i == 1) {
-                menu[1] = name;
-                break;
-            }
-            while (i == 2) {
-                menu[2] = salary;
-                break;
-            }
-        }
-        System.out.println(menu);
+
     }
 }

@@ -19,16 +19,31 @@ public class WorkerService {
         String location = scanner.nextLine();
         Worker worker = new Worker(id,name, age, salary, location);
         Database.workers.add(worker);
+//        Database.salaryInformation.add(new Worker(id, name,salary, "UP"));
         System.out.println("Adding successful!");
 
         return worker;
     }
-    public Worker codeLogin (Scanner scanner) {
-        System.out.printf("Enter Code: ");
-        int code = Integer.parseInt(scanner.nextLine());
-        Worker worker = codeFinder(code);
 
-        return worker;
+
+    public Worker codeLogin (Scanner scanner) {
+        Worker workers = null;
+        int inputCode;
+        do {
+            System.out.printf("Enter Code: ");
+            int code = Integer.parseInt(scanner.nextLine());
+            inputCode = code;
+            Worker worker = codeFinder(inputCode);
+            if (worker == null) {
+                System.out.println("This code doesn't exists! Please enter again");
+            }
+            else {
+                workers = worker;
+            }
+        } while (codeFinder(inputCode) == null);
+
+
+        return workers;
     }
 
 //    updateService
@@ -39,13 +54,15 @@ public class WorkerService {
             System.out.printf("Insert new salary: ");
             int salaryUpdate = Integer.parseInt(scanner.nextLine());
             if (salaryUpdate > worker.getSalary()) {
-                worker.setSalary(salaryUpdate);
+                worker.setStatus("UP");
+                Database.salaryInformation.add(new Worker(worker.getId(), worker.getName(), salaryUpdate, "UP"));
                 loop = false;
             }
             else {
                 System.out.println("New salary must higher than the previous one");
             }
         }
+        System.out.println("Update salary successfully");
     }
     public void salaryDown (Scanner scanner, Worker worker) {
         boolean loop = true;
@@ -55,12 +72,15 @@ public class WorkerService {
             int salaryUpdate = Integer.parseInt(scanner.nextLine());
             if (salaryUpdate < worker.getSalary()) {
                 worker.setSalary(salaryUpdate);
+                worker.setStatus("DOWN");
+                Database.salaryInformation.add(new Worker(worker.getId(), worker.getName(), salaryUpdate, "DOWN"));
                 loop = false;
             }
             else {
                 System.out.println("New salary must lower than the previous one");
             }
         }
+        System.out.println("Update salary successfully");
     }
 
 //    checkService

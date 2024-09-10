@@ -1,5 +1,8 @@
 import view.Menu;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -8,5 +11,12 @@ public class Main {
         Menu menu = new Menu();
 
         menu.startMenuSelecttion(scanner);
+
+
+//        LocalDateTime updateTime = LocalDateTime.now();
+//        DateTimeFormatter Format = DateTimeFormatter.ofPattern("dd / MM / yyyy");
+//        String formattedDate = updateTime.format(Format);
+//        System.out.println(formattedDate);
+
     }
 }
